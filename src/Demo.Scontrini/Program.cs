@@ -18,7 +18,7 @@ app.Services.Configure<ContentUnderstandingOptions>(
 // Registra il servizio dell'API Content Understanding nel contenitore DI
 app.Services.AddContentUnderstandingApi();
 
-// Costruisce e avvia l'host dell'applicazione
+// Costruisce e avvia l'host dell'Applicazione
 var host = app.Build();
 
 // Ottiene le istanze dei servizi registrati
@@ -69,13 +69,12 @@ while (operationIds.Count > 0)
     {
         // Rimuove l'operazione completata dalla lista di tracking
         operationIds.RemoveAt(0);
-        
-        // Estrae l'importo totale dal risultato dell'analisi
-        // Utilizza null-coalescing (?.) per gestire in sicurezza i dati mancanti
-        var totalAmount = result.Result?.Contents?[0].Fields?["TotalAmount"].ValueNumber;
-        
-        // Log del risultato finale con l'importo totale estratto
-        logger.LogInformation("Operation {operationId}. Total amount {totalAmount}", operationId, totalAmount);
+
+        if (result.Result?.Contents?.FirstOrDefault() is DocumentContent documentContent)
+        {
+            var fieldValue = (NumberField?)documentContent.Fields?["TotalAmount"];
+            logger.LogInformation("Operation {operationId}. Field value {fieldValue}", operationId, fieldValue.ValueNumber);
+        }
     }
     else
     {

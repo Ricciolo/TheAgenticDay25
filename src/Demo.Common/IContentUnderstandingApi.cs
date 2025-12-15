@@ -28,7 +28,7 @@ public interface IContentUnderstandingApi
     /// <param name="cancellationToken">Token di cancellazione</param>
     /// <returns>Risultato dell'operazione con ID tracciamento</returns>
     [Post("/contentunderstanding/analyzers/{analyzerId}:analyzeBinary?api-version=2025-11-01")]
-    Task<AnalyzeResult> AnalyzeBinaryAsync(
+    Task<AnalyzeOperation> AnalyzeBinaryAsync(
         string analyzerId,
         [Body] Stream content,
         [Query] string? stringEncoding = null,
@@ -73,5 +73,22 @@ public interface IContentUnderstandingApi
     [Get("/contentunderstanding/analyzerResults/{operationId}?api-version=2025-11-01")]
     Task<ContentAnalyzerAnalyzeOperationStatus> GetResultAsync(
         string operationId,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Analizza il contenuto di documenti (URL o binario) utilizzando l'analyzer specificato
+    /// </summary>
+    /// <param name="analyzerId">Identificatore univoco dell'analyzer</param>
+    /// <param name="request">Richiesta di analisi con input (URL o dati binari) da analizzare</param>
+    /// <param name="stringEncoding">Formato di codifica delle stringhe nella risposta (codePoint, utf16, utf8). Default: codePoint</param>
+    /// <param name="processingLocation">Ubicazione dove i dati possono essere elaborati (geography, dataZone, global). Default: global</param>
+    /// <param name="cancellationToken">Token di cancellazione</param>
+    /// <returns>Risultato dell'operazione con ID tracciamento</returns>
+    [Post("/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01")]
+    Task<AnalyzeOperation> AnalyzeAsync(
+        string analyzerId,
+        [Body] AnalyzeRequest request,
+        [Query] string? stringEncoding = null,
+        [Query] string? processingLocation = null,
         CancellationToken cancellationToken = default);
 }

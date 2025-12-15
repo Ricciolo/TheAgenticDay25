@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Demo.Scontrini": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

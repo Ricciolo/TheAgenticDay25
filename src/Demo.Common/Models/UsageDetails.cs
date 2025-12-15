@@ -39,5 +39,5 @@ public class UsageDetails
     /// <summary>
     /// Il numero di token LLM e di embedding consumati, raggruppati per modello (es. GPT 4.1) e tipo (es. input, cached input, output)
     /// </summary>
-    public Dictionary<string, object>? Tokens { get; init; }
+    public Dictionary<string, long>? Tokens { get; init; }
 }

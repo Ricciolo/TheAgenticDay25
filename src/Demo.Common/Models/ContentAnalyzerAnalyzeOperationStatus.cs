@@ -18,10 +18,10 @@ public class ContentAnalyzerAnalyzeOperationStatus
     /// <summary>
     /// Il risultato completo dell'operazione di analisi
     /// </summary>
-    public AnalyzeOperationResult? Result { get; init; }
+    public AnalyzeResult? Result { get; init; }
 
     /// <summary>
-    /// Oggetto errore che descrive l'errore quando lo stato è "Failed"
+    /// Oggetto errore che descrive l'errore quando lo stato ï¿½ "Failed"
     /// </summary>
     public Error? Error { get; init; }
 

@@ -3,5 +3,6 @@
     <File Path="../.github/copilot-instructions.md" />
   </Folder>
   <Project Path="Demo.Common/Demo.Common.csproj" Id="3e97fbca-3a70-4df7-b757-593e52b2425d" />
+  <Project Path="Demo.Manuals/Demo.Manuals.csproj" />
   <Project Path="Demo.Scontrini/Demo.Scontrini.csproj" />
 </Solution>

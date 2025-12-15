@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Refit;
@@ -20,8 +22,24 @@ public static class ContentUnderstandingServiceCollectionExtensions
     {
         services.AddTransient<ContentUnderstandingAuthHandler>();
 
+        var jsonOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            Converters = {
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            },
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            WriteIndented = false
+        };
+
+        var refitSettings = new RefitSettings
+        {
+            ContentSerializer = new SystemTextJsonContentSerializer(jsonOptions)
+        };
+
         services
-            .AddRefitClient<IContentUnderstandingApi>()
+            .AddRefitClient<IContentUnderstandingApi>(refitSettings)
             .ConfigureHttpClient((serviceProvider, client) =>
             {
                 var options = serviceProvider.GetRequiredService<IOptions<ContentUnderstandingOptions>>().Value;
