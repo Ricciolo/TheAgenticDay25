@@ -58,7 +58,7 @@ var logger = host.Services.GetRequiredService<ILogger<Program>>();
 // ============================================================================
 // Analizza i file, estrae il contenuto Markdown e lo indicizza in Azure Search
 
-await IndexDocumentsAsync();
+//await IndexDocumentsAsync();
 
 // ============================================================================
 // FASE 2: RICERCA

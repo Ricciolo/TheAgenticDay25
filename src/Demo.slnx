@@ -4,5 +4,6 @@
   </Folder>
   <Project Path="Demo.Common/Demo.Common.csproj" Id="3e97fbca-3a70-4df7-b757-593e52b2425d" />
   <Project Path="Demo.Manuals/Demo.Manuals.csproj" />
+  <Project Path="Demo.Scontrini.Mcp/Demo.Scontrini.Mcp.csproj" Id="0bc11206-43c6-49f2-b83a-99bc15ef5baa" />
   <Project Path="Demo.Scontrini/Demo.Scontrini.csproj" />
 </Solution>
